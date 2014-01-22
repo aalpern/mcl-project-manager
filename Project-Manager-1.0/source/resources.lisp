@@ -4,7 +4,7 @@
 ;; system:	P R O J E C T  M A N A G E R
 ;;
 ;; file: 	resources.lisp
-;; author: 	Adam Alpern <alpern@brightware.com>
+;; author: 	Adam Alpern
 ;; created: 	6/8/1995
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
