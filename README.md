@@ -15,7 +15,6 @@ version 1.0
 July ??, 1996
 
 Copyright © 1995, 1996 Adam Alpern
-alpern@brightware.com
 
 The Project Manager was written to work with Mark Kantrowitz's DEFSYSTEM
 utility. At the moment, it does not work with any other defsystem-type utility.
