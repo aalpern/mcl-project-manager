@@ -5,7 +5,7 @@ An old project manager UI for Macintosh Common LISP 3.0. I built this
 primarily in college, to give MCL a CodeWarrior-like project manager
 IDE window. It's built for Mark Kantrowitz's DEFSYSTEM build system.
 
-![project manager window](https://raw2.github.com/aalpern/mcl-project-manager/master/screenshots/project-window1.png)
+![project manager window](screenshots/project-window1.png)
 
 The original README follows:
 
