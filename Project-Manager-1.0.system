@@ -1,1 +1,64 @@
-;; -*- mode:lisp; -*-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; system:	P R O J E C T - M A N A G E R;;;; file: 	project-manager-1.0.system;; author: 	Adam Alpern;; created: 	3/16/1995;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Revision History;; ----------------;; 6/4/1997	- header added;; 3/16/1995	- file created;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;(in-package :cl-user)#-ccl-3 (error "The Project Manager requires MCL 3.0 or later.")(defsystem :project-manager-1.0  :source-pathname "projects;Project-Manager-1.0:source:"  :binary-pathname  #+(and ccl-3 (not powerpc)) "projects;Project-Manager-1.0:binaries:mcl3-68K:"  #+(and ccl-3 powerpc) "projects;Project-Manager-1.0:binaries:mcl3-PPC:"  #+(and ccl-3 powerpc) :binary-extension  #+(and ccl-3 powerpc) "pfsl"  :depends-on (UI-LIB-1.0)  :initially-do (progn                  (use-package :ui-lib)                  (require :RESOURCES)                  (require :SCROLLERS)                  (defparameter 	*project-manager-rsrc-file* 	"projects;Project-Manager-1.0:Resources")                  (defparameter 	*project-manager-version* 	"1.0")                  (defparameter 	*project-manager-color-p* 	t)                  (defparameter 	*project-manager-use-menu* 	t)	;; set this to nil to load systems window                  ;; instead (to save menubar space)                  )  :finally-do (pushnew :project-manager *features*)  ;; Evaluate this to load the project manager immediately (rather than using  ;; it strictly from a saved image)#|  :finally-do (progn                (pushnew :project-manager *features*)                (with-open-resource-file (f *project-manager-rsrc-file*)                  (init-projman-resources))                (setup-project-menu))  |#  :components  (   (:file "resources")   (:file "component-views")   (:file "manage-system")   (:file "path-editor")   (:file "preference-sheets")   (:file "systems-dialog")   (:file "menu")   )  )
+;; -*- mode:lisp; -*-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; system:	P R O J E C T - M A N A G E R
+;;
+;; file: 	project-manager-1.0.system
+;; author: 	Adam Alpern
+;; created: 	3/16/1995
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Revision History
+;; ----------------
+;; 6/4/1997	- header added
+;; 3/16/1995	- file created
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(in-package :cl-user)
+
+#-ccl-3 (error "The Project Manager requires MCL 3.0 or later.")
+
+(defsystem :project-manager-1.0
+  :source-pathname "projects;Project-Manager-1.0:source:"
+  :binary-pathname
+  #+(and ccl-3 (not powerpc)) "projects;Project-Manager-1.0:binaries:mcl3-68K:"
+  #+(and ccl-3 powerpc) "projects;Project-Manager-1.0:binaries:mcl3-PPC:"
+  #+(and ccl-3 powerpc) :binary-extension
+  #+(and ccl-3 powerpc) "pfsl"
+  :depends-on (UI-LIB-1.0)
+  :initially-do (progn
+                  (use-package :ui-lib)
+                  (require :RESOURCES)
+                  (require :SCROLLERS)
+
+                  (defparameter 	*project-manager-rsrc-file* 	"projects;Project-Manager-1.0:Resources")
+                  (defparameter 	*project-manager-version* 	"1.0")
+                  (defparameter 	*project-manager-color-p* 	t)
+                  (defparameter 	*project-manager-use-menu* 	t)	;; set this to nil to load systems window
+                  ;; instead (to save menubar space)
+
+                  )
+  :finally-do (pushnew :project-manager *features*)
+
+  ;; Evaluate this to load the project manager immediately (rather than using
+  ;; it strictly from a saved image)
+#|
+  :finally-do (progn
+                (pushnew :project-manager *features*)
+                (with-open-resource-file (f *project-manager-rsrc-file*)
+                  (init-projman-resources))
+                (setup-project-menu))
+  |#
+  :components
+  (
+   (:file "resources")
+   (:file "component-views")
+   (:file "manage-system")
+   (:file "path-editor")
+   (:file "preference-sheets")
+   (:file "systems-dialog")
+   (:file "menu")
+   )
+  )
